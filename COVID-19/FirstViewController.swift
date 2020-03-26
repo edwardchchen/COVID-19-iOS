@@ -7,14 +7,38 @@
 //
 
 import UIKit
+import Charts
 
 class FirstViewController: UIViewController {
-
+    @IBOutlet var pieChartView: PieChartView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-    }
+              
+        let months = ["Deaths", "Infected", "Recovered"]
+        let unitsSold = [55.0,12.0,33.0]
+              
+        setChart(dataPoints: months, values: unitsSold)
+              
+}
+          
+func setChart(dataPoints: [String], values: [Double]) {
+              
+              var dataEntries: [ChartDataEntry] = []
+              
+              for i in 0..<dataPoints.count {
+                let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
+                  dataEntries.append(dataEntry)
+              }
+              
+            let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: "World Data")
+              let pieChartData = PieChartData(dataSet: pieChartDataSet)
+              pieChartView.data = pieChartData
+              
+            let colors: [UIColor] = [UIColor.red,UIColor.blue,UIColor.darkGray]
+            pieChartDataSet.colors = colors
 
+          }
 
 }
-

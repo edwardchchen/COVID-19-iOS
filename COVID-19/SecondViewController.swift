@@ -15,7 +15,6 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var howVirusSpreadsTextView: UITextView!
     @IBOutlet weak var socialDIstaceTextView: UITextView!
     @IBOutlet weak var selfIsoLateTextView: UITextView!
-    @IBOutlet weak var maskTextView: UITextView!
     @IBOutlet weak var hygieneTextView: UITextView!
     override func viewDidLoad() {
         
