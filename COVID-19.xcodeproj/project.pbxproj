@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		362FEC04242D4C590021CCFE /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362FEC03242D4C580021CCFE /* JsonParser.swift */; };
 		368F95F9242C5D4400C13DE1 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 368F95F5242C5C6F00C13DE1 /* Charts.framework */; };
 		368F95FA242C5D4400C13DE1 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 368F95F5242C5C6F00C13DE1 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		36C4C07D241ACE01007637CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4C07C241ACE01007637CA /* AppDelegate.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		362FEC03242D4C580021CCFE /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		368F95EF242C5C6F00C13DE1 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		36C4C079241ACE01007637CA /* COVID-19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "COVID-19.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36C4C07C241ACE01007637CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				36C4C07E241ACE01007637CA /* SceneDelegate.swift */,
 				36C4C080241ACE01007637CA /* FirstViewController.swift */,
 				36C4C082241ACE01007637CA /* SecondViewController.swift */,
+				362FEC03242D4C580021CCFE /* JsonParser.swift */,
 				36C4C084241ACE01007637CA /* Main.storyboard */,
 				36C4C087241ACE06007637CA /* Assets.xcassets */,
 				36C4C089241ACE06007637CA /* LaunchScreen.storyboard */,
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36C4C083241ACE01007637CA /* SecondViewController.swift in Sources */,
+				362FEC04242D4C590021CCFE /* JsonParser.swift in Sources */,
 				36C4C081241ACE01007637CA /* FirstViewController.swift in Sources */,
 				36C4C07D241ACE01007637CA /* AppDelegate.swift in Sources */,
 				36C4C07F241ACE01007637CA /* SceneDelegate.swift in Sources */,
