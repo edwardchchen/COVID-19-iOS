@@ -124,7 +124,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e74-Ff-9Ma">
-                                        <rect key="frame" x="8" y="222" width="201" height="22"/>
+                                        <rect key="frame" x="8" y="200" width="201" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <string key="text">Preventing coronavirus
 </string>
@@ -132,8 +132,8 @@
                                         <color key="textColor" name="systemPurpleColor" catalog="System" colorSpace="catalog"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FEq-4W-sFP">
-                                        <rect key="frame" x="8" y="37" width="398" height="177"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FEq-4W-sFP">
+                                        <rect key="frame" x="8" y="37" width="398" height="155"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -141,35 +141,27 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Self-monitor, self-isolate and isolate" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gKb-FR-UwH">
-                                        <rect key="frame" x="8" y="251" width="398" height="177.5"/>
+                                        <rect key="frame" x="8" y="230" width="398" height="145"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Social Distancing" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wiQ-LF-Twv">
-                                        <rect key="frame" x="8" y="436" width="398" height="121"/>
+                                        <rect key="frame" x="8" y="383" width="398" height="213"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Hygiene" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sL8-u3-sdw">
-                                        <rect key="frame" x="8" y="565" width="398" height="63"/>
+                                        <rect key="frame" x="8" y="604" width="398" height="146"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Mask" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yt2-EB-oyP">
-                                        <rect key="frame" x="8" y="636" width="398" height="63"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
@@ -185,7 +177,6 @@
                         <outlet property="howVirusSpreadLabel" destination="AOy-WB-dFN" id="PqR-Br-S3a"/>
                         <outlet property="howVirusSpreadsTextView" destination="FEq-4W-sFP" id="nx2-Ly-I95"/>
                         <outlet property="hygieneTextView" destination="sL8-u3-sdw" id="3W4-Td-3H9"/>
-                        <outlet property="maskTextView" destination="yt2-EB-oyP" id="72N-bd-pKU"/>
                         <outlet property="preventionLabel" destination="e74-Ff-9Ma" id="67o-fJ-nFm"/>
                         <outlet property="selfIsoLateTextView" destination="gKb-FR-UwH" id="bBN-MY-zqP"/>
                         <outlet property="socialDIstaceTextView" destination="wiQ-LF-Twv" id="N6D-4z-cng"/>
