@@ -8,24 +8,10 @@
 
 import UIKit
 import Charts
-struct Countries:Decodable{
-//    let id : Int
-    let name : String
-//    let death : Int
-//    let recovered : Int
-//    let infected :Int
-    init(json:[String:Any]){
-//        id = json["id"] as? Int ?? -1
-        name = json["Taiwan*"]as? String ?? ""
-//        death = json["deaths"] as? Int ?? -1
-//        recovered = json["recovered"] as? Int ?? -1
-//        infected = json["confirmed"] as? Int ?? -1
-        
-    }
-    
-}
+
 class FirstViewController: UIViewController {
     @IBOutlet var pieChartView: PieChartView!
+    let parser = JsonParser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +19,7 @@ class FirstViewController: UIViewController {
               
         let months = ["Deaths", "Infected", "Recovered"]
         let unitsSold = [55.0,12.0,33.0]
-        fetchdata()
-              
+        parser.fetchdata()
         setChart(dataPoints: months, values: unitsSold)
               
 }
