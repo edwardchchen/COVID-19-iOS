@@ -9,8 +9,15 @@
 import UIKit
 import Charts
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController{
+    
     @IBOutlet var pieChartView: PieChartView!
+    @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var countryTextField: UITextField!
+    
+    let pickerData = ["World","Taiwan"]
+    
+    var selectedCountry = "Taiwan"
     let parser = JsonParser()
     
     override func viewDidLoad() {
@@ -19,9 +26,16 @@ class FirstViewController: UIViewController {
               
         let months = ["Deaths", "Infected", "Recovered"]
         let unitsSold = [55.0,12.0,33.0]
-        parser.fetchdata()
+        var country = Countries()
+        parser.fetchdata(country: country, link:"https://covidapi.info/api/v1/global")
+        print(country.confirmed)
+        print(country.death)
+        print(country.recovered)
         setChart(dataPoints: months, values: unitsSold)
-              
+        pieChartView.centerText = "Hi"
+        pieChartView.backgroundColor = UIColor.white
+        pieChartView.transparentCircleColor = nil
+        createPicker()
 }
           
 func setChart(dataPoints: [String], values: [Double]) {
@@ -42,6 +56,36 @@ func setChart(dataPoints: [String], values: [Double]) {
 
           }
 
+    func createPicker () {
+        let picker = UIPickerView()
+        picker.delegate = self
+        picker.dataSource = self
+        countryTextField.inputView = picker
+        createTap()
+    }
 
 
 }
+extension FirstViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+}
+
+func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return pickerData.count
+}
+func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    return pickerData[row]
+}
+
+func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    selectedCountry = pickerData[row]
+    countryTextField.text = String(selectedCountry)
+}
+func createTap() {
+    let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+    tap.cancelsTouchesInView = false
+    view.addGestureRecognizer(tap)
+    }
+}
+

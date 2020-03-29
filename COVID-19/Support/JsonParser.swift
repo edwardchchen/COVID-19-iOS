@@ -7,18 +7,18 @@
 //
 
 import Foundation
-
+import SwiftyJSON
 class JsonParser{
-    func fetchdata(){
-    let url = URL(string:"https://covidapi.info/api/v1/global")
+    func fetchdata(country:Countries,link:String){
+    let url = URL(string:link)
     let session = URLSession.shared
-    let dataTask = session.dataTask(with: url!){
+        let dataTask = session.dataTask(with: url!){
         (data,response,error)in
             do{
-            let decoder = JSONDecoder()
-                let hi = try decoder.decode(Global.self, from: data!)
-                print(hi.count)
-                
+                let json = try JSON(data: data!)
+                country.confirmed = json["result"]["confirmed"].int!
+                country.death = json["result"]["deaths"].int!
+                country.recovered = json["result"]["recovered"].int!
             }catch{
                 print("Error")
             }
