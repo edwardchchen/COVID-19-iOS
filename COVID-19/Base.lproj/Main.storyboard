@@ -47,6 +47,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Vm-W0-IEd">
+                                <rect key="frame" x="109" y="639" width="196" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Refresh Data"/>
+                                <connections>
+                                    <action selector="refreshButtonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="D4c-ls-kvY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="QwL-dq-cnJ"/>
@@ -58,6 +66,7 @@
                         <outlet property="deathLabel" destination="NdT-l9-b8q" id="qu2-7w-qAL"/>
                         <outlet property="pieChartView" destination="BLc-gw-k0j" id="KfE-mL-tm6"/>
                         <outlet property="recoveredLabel" destination="ueF-b8-Uxd" id="ofC-d4-7FV"/>
+                        <outlet property="refreshButtonOutlet" destination="4Vm-W0-IEd" id="qrB-dC-2GG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

@@ -30,5 +30,19 @@ func fetchdata(country: Countries,link:String){
     _ = semaphore.wait(wallTimeout: .distantFuture)
 
     }
+    func getCountriesList(countryList:inout [String], countryMap : [String : String]){
+        if let path = Bundle.main.path(forResource: "countriesList", ofType: "json") {
+            do{
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let json = try JSON(data:data)
+                for (index,subJson):(String, JSON) in json {
+                    countryList.append(subJson["name"].string!)
+                }
+            }catch{
+                print("error")
+            }
+        }
+
+    }
     
 }

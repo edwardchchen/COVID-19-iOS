@@ -17,10 +17,14 @@ class FirstViewController: UIViewController{
     @IBOutlet weak var countryTextField: UITextField!
     @IBOutlet weak var recoveredLabel: UILabel!
     
-    let pickerData = ["World","Taiwan"]
+    @IBOutlet weak var refreshButtonOutlet: UIButton!
+    @IBAction func refreshButtonPressed(_ sender: Any) {
+    }
+    var pickerData = ["World"]
     var confirmedDataEntry = PieChartDataEntry(value: 0)
     var deathDataEntry = PieChartDataEntry(value: 0)
     var recoveredDataEntry = PieChartDataEntry(value: 0)
+    var countryMap : [String:String] = [:]
 
     
     var selectedCountry = "Taiwan"
@@ -32,15 +36,24 @@ class FirstViewController: UIViewController{
         // Do any additional setup after loading the view.
         parser.fetchdata(country:  country, link:"https://covidapi.info/api/v1/global")
         setLabel()
+        setButtonAppeal()
         createPicker()
         setChart()
         setChartAppeal()
+        parser.getCountriesList(countryList: &pickerData, countryMap: countryMap)
 
     }
     func setLabel(){
         confirmedLabel.text = String(format: "Confirmed: %i cases", country.confirmed)
         deathLabel.text = String(format: "Deaths: %i cases", country.death)
         recoveredLabel.text = String(format:"Recovered: %i cases", country.recovered)
+    }
+    func setButtonAppeal(){
+        refreshButtonOutlet.layer.cornerRadius = 25.0
+        refreshButtonOutlet.layer.borderColor = UIColor.darkGray.cgColor
+        refreshButtonOutlet.layer.borderWidth = 2
+        refreshButtonOutlet.tintColor = UIColor.darkGray
+
     }
     func setChartAppeal(){
         pieChartView.centerText = "COVID-19 Data"
