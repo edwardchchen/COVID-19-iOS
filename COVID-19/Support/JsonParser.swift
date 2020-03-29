@@ -9,7 +9,8 @@
 import Foundation
 import SwiftyJSON
 class JsonParser{
-    func fetchdata(country:Countries,link:String){
+func fetchdata(country: Countries,link:String){
+    let semaphore = DispatchSemaphore(value: 0)
     let url = URL(string:link)
     let session = URLSession.shared
         let dataTask = session.dataTask(with: url!){
@@ -22,8 +23,12 @@ class JsonParser{
             }catch{
                 print("Error")
             }
-    }
-    dataTask.resume()
+        semaphore.signal()
+        }
+
+        dataTask.resume()
+    _ = semaphore.wait(wallTimeout: .distantFuture)
 
     }
+    
 }

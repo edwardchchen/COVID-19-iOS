@@ -12,45 +12,51 @@ import Charts
 class FirstViewController: UIViewController{
     
     @IBOutlet var pieChartView: PieChartView!
-    @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var confirmedLabel: UILabel!
+    @IBOutlet weak var deathLabel: UILabel!
     @IBOutlet weak var countryTextField: UITextField!
+    @IBOutlet weak var recoveredLabel: UILabel!
     
     let pickerData = ["World","Taiwan"]
     
     var selectedCountry = "Taiwan"
     let parser = JsonParser()
-    
+    var country = Countries()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-              
-        let months = ["Deaths", "Infected", "Recovered"]
-        let unitsSold = [55.0,12.0,33.0]
-        var country = Countries()
-        parser.fetchdata(country: country, link:"https://covidapi.info/api/v1/global")
-        print(country.confirmed)
-        print(country.death)
-        print(country.recovered)
-        setChart(dataPoints: months, values: unitsSold)
+        let status = ["Deaths", "Confirmed", "Recovered"]
+        parser.fetchdata(country:  country, link:"https://covidapi.info/api/v1/global")
+        let pieValues = [Double(country.death),Double(country.confirmed),Double(country.recovered)]
+        setLabel()
+        setChart(dataPoints: status, values: pieValues)
+        setChartAppeal()
+        createPicker()
+    }
+    func setLabel(){
+        confirmedLabel.text = String(format: "Confirmed: %i cases", country.confirmed)
+        deathLabel.text = String(format: "Deaths: %i cases", country.death)
+        recoveredLabel.text = String(format:"Recovered: %i cases", country.recovered)
+    }
+    func setChartAppeal(){
         pieChartView.centerText = "Hi"
         pieChartView.backgroundColor = UIColor.white
         pieChartView.transparentCircleColor = nil
-        createPicker()
-}
+    }
           
-func setChart(dataPoints: [String], values: [Double]) {
+    func setChart(dataPoints: [String], values: [Double]) {
               
-              var dataEntries: [ChartDataEntry] = []
+            var dataEntries: [ChartDataEntry] = []
               
-              for i in 0..<dataPoints.count {
+            for i in 0..<dataPoints.count {
                 let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
                   dataEntries.append(dataEntry)
               }
               
             let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: "World Data")
-              let pieChartData = PieChartData(dataSet: pieChartDataSet)
-              pieChartView.data = pieChartData
-              
+            let pieChartData = PieChartData(dataSet: pieChartDataSet)
+            pieChartView.data = pieChartData
             let colors: [UIColor] = [UIColor.red,UIColor.blue,UIColor.darkGray]
             pieChartDataSet.colors = colors
 
