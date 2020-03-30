@@ -19,6 +19,7 @@ class FirstViewController: UIViewController{
     
     @IBOutlet weak var refreshButtonOutlet: UIButton!
     @IBAction func refreshButtonPressed(_ sender: Any) {
+        refreshData()
     }
     var pickerData = ["World"]
     var confirmedDataEntry = PieChartDataEntry(value: 0)
@@ -26,21 +27,21 @@ class FirstViewController: UIViewController{
     var recoveredDataEntry = PieChartDataEntry(value: 0)
     var countryMap : [String:String] = [:]
 
-    
-    var selectedCountry = "Taiwan"
+    let colors: [UIColor] = [UIColor(patternImage: #imageLiteral(resourceName: "blue")),UIColor(patternImage: #imageLiteral(resourceName: "red")),UIColor(patternImage: #imageLiteral(resourceName: "green"))]
+    var selectedCountry = "World"
     let parser = JsonParser()
     var country = Countries()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        parser.fetchdata(country:  country, link:"https://covidapi.info/api/v1/global")
+        parser.fetchGlobalData(country:  country, link:"https://covidapi.info/api/v1/global")
         setLabel()
         setButtonAppeal()
         createPicker()
         setChart()
         setChartAppeal()
-        parser.getCountriesList(countryList: &pickerData, countryMap: countryMap)
+        parser.getCountriesList(countryList: &pickerData, countryMap: &countryMap)
 
     }
     func setLabel(){
@@ -71,9 +72,8 @@ class FirstViewController: UIViewController{
         let pieChartDataSet = PieChartDataSet(entries: dataEntries)
         let pieChartData = PieChartData(dataSet: pieChartDataSet)
         pieChartView.data = pieChartData
-        
-        let colors: [UIColor] = [UIColor(patternImage: #imageLiteral(resourceName: "blue")),UIColor(patternImage: #imageLiteral(resourceName: "red")),UIColor(patternImage: #imageLiteral(resourceName: "green"))]
         pieChartDataSet.colors = colors
+
         }
 
     func createPicker () {
@@ -82,6 +82,22 @@ class FirstViewController: UIViewController{
         picker.dataSource = self
         countryTextField.inputView = picker
         createTap()
+    }
+    //format https://covidapi.info/api/v1/country/IND/2020-03-15
+    func refreshData(){
+        var url : String
+        let current = countryTextField.text ?? nil
+        if(current=="World"){
+            url = "https://covidapi.info/api/v1/global"
+            parser.fetchGlobalData(country: country, link: url)
+        }else{
+            let alpha_three = String(countryMap[current!]!)
+            url = "https://covidapi.info/api/v1/country/"+alpha_three+"/"+country.date
+            parser.fetchCountryData(country: country, link: url)
+
+        }
+        
+        setChart()
     }
 
 

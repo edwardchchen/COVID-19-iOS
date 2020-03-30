@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 class JsonParser{
-func fetchdata(country: Countries,link:String){
+func fetchGlobalData(country: Countries,link:String){
     let semaphore = DispatchSemaphore(value: 0)
     let url = URL(string:link)
     let session = URLSession.shared
@@ -17,6 +17,7 @@ func fetchdata(country: Countries,link:String){
         (data,response,error)in
             do{
                 let json = try JSON(data: data!)
+                country.date = json["date"].string!
                 country.confirmed = json["result"]["confirmed"].int!
                 country.death = json["result"]["deaths"].int!
                 country.recovered = json["result"]["recovered"].int!
@@ -28,15 +29,39 @@ func fetchdata(country: Countries,link:String){
 
         dataTask.resume()
     _ = semaphore.wait(wallTimeout: .distantFuture)
+    }
+    
+    func fetchCountryData(country: Countries,link:String){
+        let semaphore = DispatchSemaphore(value: 0)
+        let url = URL(string:link)
+        let session = URLSession.shared
+            let dataTask = session.dataTask(with: url!){
+            (data,response,error)in
+                do{
+                    let json = try JSON(data: data!)
+                    country.confirmed = json["result"][country.date]["confirmed"].int!
+                    country.death = json["result"][country.date]["deaths"].int!
+                    country.recovered = json["result"][country.date]["recovered"].int!
+                }catch{
+                    print("Error")
+                }
+            semaphore.signal()
+            }
+
+            dataTask.resume()
+        _ = semaphore.wait(wallTimeout: .distantFuture)
 
     }
-    func getCountriesList(countryList:inout [String], countryMap : [String : String]){
+    func getCountriesList(countryList:inout [String], countryMap : inout [String : String]){
         if let path = Bundle.main.path(forResource: "countriesList", ofType: "json") {
             do{
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let json = try JSON(data:data)
-                for (index,subJson):(String, JSON) in json {
-                    countryList.append(subJson["name"].string!)
+                for (_,subJson):(String, JSON) in json {
+                    let countryName = subJson["name"].string
+                    let countryCode = subJson["alpha-3"].string
+                    countryList.append(countryName!)
+                    countryMap[countryName!] = countryCode!
                 }
             }catch{
                 print("error")
@@ -44,5 +69,28 @@ func fetchdata(country: Countries,link:String){
         }
 
     }
+    func getLatestDate()->String{
+        let semaphore = DispatchSemaphore(value: 0)
+        var date = "NULL"
+        let url = URL(string:"https://covidapi.info/api/v1/latest-date")
+        let session = URLSession.shared
+            let dataTask = session.dataTask(with: url!){
+            (data,response,error)in
+                do{
+                    let json = try JSON(data: data!)
+                    date = json[0].string ?? "NULL"
+                    print(date)
+                }catch{
+                    print("Error")
+                }
+            semaphore.signal()
+            }
+
+            dataTask.resume()
+        _ = semaphore.wait(wallTimeout: .distantFuture)
+        return date
+
+    }
+    
     
 }
