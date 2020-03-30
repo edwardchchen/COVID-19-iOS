@@ -36,8 +36,10 @@ class FirstViewController: UIViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         parser.fetchGlobalData(country:  country, link:"https://covidapi.info/api/v1/global")
+        self.view.backgroundColor=UIColor(patternImage: #imageLiteral(resourceName: "white"))
         setLabel()
-        setButtonAppeal()
+        setLabelButtonAppeal()
+        
         createPicker()
         setChart()
         setChartAppeal()
@@ -45,20 +47,31 @@ class FirstViewController: UIViewController{
 
     }
     func setLabel(){
-        confirmedLabel.text = String(format: "Confirmed: %i cases", country.confirmed)
-        deathLabel.text = String(format: "Deaths: %i cases", country.death)
-        recoveredLabel.text = String(format:"Recovered: %i cases", country.recovered)
+        confirmedLabel.text = String(format: "Confirmed:\n%i", country.confirmed)
+        deathLabel.text = String(format: "Deaths:\n%i", country.death)
+        recoveredLabel.text = String(format:"Recovered:\n%i", country.recovered)
     }
-    func setButtonAppeal(){
+    func setLabelButtonAppeal(){
         refreshButtonOutlet.layer.cornerRadius = 25.0
         refreshButtonOutlet.layer.borderColor = UIColor.darkGray.cgColor
-        refreshButtonOutlet.layer.borderWidth = 2
+        refreshButtonOutlet.layer.borderWidth = 1
         refreshButtonOutlet.tintColor = UIColor.darkGray
+        
+        labelappeal(label: deathLabel)
+        deathLabel.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "red-light"))
+        labelappeal(label: confirmedLabel)
+        confirmedLabel.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "blue-light"))
+        labelappeal(label: recoveredLabel)
+        recoveredLabel.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "green-light"))
+
 
     }
+    func labelappeal(label : UILabel){
+        label.layer.cornerRadius = 25.0
+    }
+    
     func setChartAppeal(){
-        pieChartView.centerText = "COVID-19 Data"
-        pieChartView.backgroundColor = UIColor.white
+        pieChartView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "white"))
     }
           
     func setChart() {
@@ -73,6 +86,7 @@ class FirstViewController: UIViewController{
         let pieChartData = PieChartData(dataSet: pieChartDataSet)
         pieChartView.data = pieChartData
         pieChartDataSet.colors = colors
+        pieChartView.centerText = selectedCountry
 
         }
 
@@ -98,6 +112,7 @@ class FirstViewController: UIViewController{
         }
         
         setChart()
+        setLabel()
     }
 
 
