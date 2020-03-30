@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  DataViewController.swift
 //  COVID-19
 //
 //  Created by Edward Chen on 2020-03-12.
@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class FirstViewController: UIViewController{
+class DataViewController: UIViewController{
     
     @IBOutlet var pieChartView: PieChartView!
     @IBOutlet weak var confirmedLabel: UILabel!
@@ -117,7 +117,7 @@ class FirstViewController: UIViewController{
 
 
 }
-extension FirstViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+extension DataViewController : UIPickerViewDelegate, UIPickerViewDataSource {
 func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
 }

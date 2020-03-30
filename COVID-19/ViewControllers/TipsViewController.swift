@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  TipsViewController.swift
 //  COVID-19
 //
 //  Created by Edward Chen on 2020-03-12.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class TipsViewController: UIViewController {
     @IBOutlet weak var howVirusSpreadLabel: UILabel!
     @IBOutlet weak var preventionLabel: UILabel!
     
