@@ -17,6 +17,8 @@ Lastly, big thanks to all API and external libraries authors!
 API Used: https://github.com/backtrackbaba/covid-api
 
 Libraries Used:
+
 Charts : https://github.com/danielgindi/Charts
+
 SwiftyJson : https://github.com/SwiftyJSON/SwiftyJSON
 
